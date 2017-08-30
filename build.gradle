@@ -11,6 +11,8 @@ repositories {
 dependencies {
     compile gradleApi()
     compile localGroovy()
+    compile 'com.sendgrid:sendgrid-java:4.1.0'
+
     testCompile gradleTestKit()
 }
 
