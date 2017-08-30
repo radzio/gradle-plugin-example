@@ -20,7 +20,7 @@ class MyTask extends DefaultTask {
         Content content = new Content("text/plain", "and easy to do anywhere, even with Java");
         Mail mail = new Mail(from, subject, to, content);
 
-        SendGrid sg = new SendGrid(roject.extensions.myplugin.fileContent);
+        SendGrid sg = new SendGrid(project.extensions.myplugin.fileContent);
         Request request = new Request();
         try {
             request.setMethod(Method.POST);
