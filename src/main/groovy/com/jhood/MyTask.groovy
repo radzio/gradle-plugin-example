@@ -11,9 +11,7 @@ class MyTask extends DefaultTask {
         Email from = new Email(project.extensions.myplugin.fromEmail);
         String subject = project.extensions.myplugin.subject;
 
-        def emails = project.extensions.myplugin.toEmail.split(";")
-
-        for(email in emails) {
+        for(email in project.extensions.myplugin.toEmail) {
             Email to = new Email(email);
             Content content = new Content("text/html", project.extensions.myplugin.content);
             Mail mail = new Mail(from, subject, to, content);
