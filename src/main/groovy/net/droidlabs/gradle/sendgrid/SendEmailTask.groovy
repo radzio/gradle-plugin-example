@@ -1,10 +1,10 @@
-package com.jhood
+package net.droidlabs.gradle.sendgrid
 
 import com.sendgrid.*
 import org.gradle.api.DefaultTask
 import org.gradle.api.tasks.TaskAction
 
-class MyTask extends DefaultTask {
+class SendEmailTask extends DefaultTask {
     @TaskAction
     def action() {
 

@@ -1,6 +1,6 @@
-package com.jhood
+package net.droidlabs.gradle.sendgrid
 
-class MyPluginExtension {
+class SendGridPluginExtension {
   String fromEmail = ""
   String subject = ""
   String[] toEmail = []
