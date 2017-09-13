@@ -8,15 +8,15 @@ class SendEmailTask extends DefaultTask {
     @TaskAction
     def action() {
 
-        Email from = new Email(project.extensions.myplugin.fromEmail);
-        String subject = project.extensions.myplugin.subject;
+        Email from = new Email(project.extensions.sendgrid.fromEmail);
+        String subject = project.extensions.sendgrid.subject;
 
-        for(email in project.extensions.myplugin.toEmail) {
+        for(email in project.extensions.sendgrid.toEmail) {
             Email to = new Email(email);
-            Content content = new Content("text/html", project.extensions.myplugin.content);
+            Content content = new Content("text/html", project.extensions.sendgrid.content);
             Mail mail = new Mail(from, subject, to, content);
 
-            SendGrid sg = new SendGrid(project.extensions.myplugin.sendgridApiKey);
+            SendGrid sg = new SendGrid(project.extensions.sendgrid.sendgridApiKey);
             Request request = new Request();
             try {
                 request.setMethod(Method.POST);
