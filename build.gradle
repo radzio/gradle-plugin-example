@@ -3,21 +3,39 @@ version = "${artifact_version}.${build_number}"
 
 apply plugin: 'groovy'
 apply plugin: 'maven'
+apply plugin: "org.jetbrains.kotlin.jvm"
 
 repositories {
-	mavenCentral()
+    mavenCentral()
+    jcenter()
+}
+
+buildscript {
+    repositories {
+        mavenCentral()
+        jcenter()
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.1.4-3"
+    }
 }
 
 dependencies {
-    compile gradleApi()
+    compileOnly gradleApi()
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib:1.1.4-3'
+    implementation 'com.sendgrid:sendgrid-java:4.1.0'
     compile localGroovy()
-    compile 'com.sendgrid:sendgrid-java:4.1.0'
 
-    testCompile gradleTestKit()
+    testCompileOnly  gradleTestKit()
+    testImplementation 'junit:junit:4.12'
+    testImplementation 'org.assertj:assertj-core:3.6.2'
 }
 
 task wrapper(type: Wrapper) {
-    gradleVersion = "2.10"
+    gradleVersion = "3.5"
 }
 
 test {

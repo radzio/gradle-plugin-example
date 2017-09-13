@@ -5,22 +5,16 @@ import org.gradle.api.DefaultTask
 import org.gradle.api.tasks.TaskAction
 
 class MyTask extends DefaultTask {
-    File outputFile = new File(project.buildDir, "myfile.txt")
-
     @TaskAction
     def action() {
-        outputFile.parentFile.mkdirs()
-        outputFile.createNewFile()
-        outputFile.text = project.extensions.myplugin.fileContent
 
-
-        Email from = new Email("androiddev@talixo.com");
-        String subject = "Sending with SendGrid is Fun";
-        Email to = new Email("piekarz@talixo.de");
-        Content content = new Content("text/plain", "and easy to do anywhere, even with Java");
+        Email from = new Email(project.extensions.myplugin.fromEmail);
+        String subject = project.extensions.myplugin.subject;
+        Email to = new Email(project.extensions.myplugin.toEmail);
+        Content content = new Content("text/html", project.extensions.myplugin.content);
         Mail mail = new Mail(from, subject, to, content);
 
-        SendGrid sg = new SendGrid(project.extensions.myplugin.fileContent);
+        SendGrid sg = new SendGrid(project.extensions.myplugin.sendgridApiKey);
         Request request = new Request();
         try {
             request.setMethod(Method.POST);
